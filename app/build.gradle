@@ -6,6 +6,7 @@ android {
     }
     compileSdkVersion 26
     defaultConfig {
+        buildConfigField "String", "API_KEY", "\"${API_KEY}\""
         applicationId "com.framgia.soundclound"
         minSdkVersion 19
         targetSdkVersion 26
@@ -30,6 +31,11 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile 'com.google.code.gson:gson:2.8.1'
+<<<<<<< HEAD
+=======
+
+    compile 'com.android.support:cardview-v7:26.1.0'
+>>>>>>> get tracks
     compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support:design:26.1.0'
 }
