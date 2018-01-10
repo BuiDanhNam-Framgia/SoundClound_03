@@ -140,6 +140,7 @@ public class PlaylistModelView extends BaseObservable implements OnItemAlbumClic
                     }
                 });
         builder.setNegativeButton(R.string.action_cancel, null);
+
     }
 
     private void handleDeleteAlbum(final Album album, AlertDialog.Builder builder) {
@@ -158,4 +159,5 @@ public class PlaylistModelView extends BaseObservable implements OnItemAlbumClic
                 });
         builder.setNegativeButton(R.string.action_cancel, null);
     }
+
 }
