@@ -31,7 +31,7 @@ public class GenreDetailAdapter extends
     public GenreDetailViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         ItemGenreDetailBinding itemGenreDetailBinding = DataBindingUtil.inflate(layoutInflater,
-                R.layout.item_genre_detail , parent, false);
+                R.layout.item_genre_detail, parent, false);
         return new GenreDetailViewHolder(itemGenreDetailBinding, mMoreInfoClickListener,
                 mTrackClickListener);
     }

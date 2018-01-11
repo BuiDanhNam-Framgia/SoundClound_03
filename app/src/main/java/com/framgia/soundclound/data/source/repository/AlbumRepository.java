@@ -55,13 +55,18 @@ public class AlbumRepository implements AlbumDataSource {
     }
 
     @Override
-    public boolean addTrackinAlbum(Album album, Track track) {
-        return mLocalDataSource.addTrackinAlbum(album, track);
+    public boolean addTrack(int idAlbum, Track track) {
+        return mLocalDataSource.addTrack(idAlbum, track);
     }
 
     @Override
-    public boolean remoteTrack(Album album, Track track) {
-        return mLocalDataSource.remoteTrack(album, track);
+    public List<Track> getAllTrack(int idAlbum) {
+        return mLocalDataSource.getAllTrack(idAlbum);
+    }
+
+    @Override
+    public boolean removeTrack(int idAlbum, int idTrack) {
+        return mLocalDataSource.removeTrack(idAlbum, idTrack);
     }
 
     @Override

@@ -10,11 +10,12 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Created by Sony on 1/5/2018.
  */
 
-public class TrackRemoteDataSource implements TrackDataSource {
+public class TrackRemoteDataSource implements TrackDataSource.RemoveDataSource {
 
     private static TrackRemoteDataSource sTrackRemoteDataSource;
 
@@ -33,7 +34,7 @@ public class TrackRemoteDataSource implements TrackDataSource {
 
     @Override
     public void getListTrack(String url, String genre, int limit, int offSet,
-                             final Callback<List<Track>> callback) {
+                             final TrackDataSource.Callback<List<Track>> callback) {
         new LoadAsync(new TrackDataSource.Callback<String>() {
             @Override
             public void onStartLoading() {
