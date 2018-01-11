@@ -3,6 +3,7 @@ package com.framgia.soundclound.data.source.remote;
 import android.os.AsyncTask;
 
 import com.framgia.soundclound.data.source.TrackDataSource;
+import com.framgia.soundclound.util.Constant;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -41,12 +42,12 @@ public class LoadAsync extends AsyncTask<String, String, String> {
             connection.setRequestMethod("GET");
             int responseCode = connection.getResponseCode();
             if (responseCode != HttpURLConnection.HTTP_OK) {
-                throw new IOException("HTTP Code" + responseCode);
+                new IOException("HTTP Code" + responseCode);
             }
             InputStream inputStream = connection.getInputStream();
             result = readStream(inputStream);
         } catch (IOException e) {
-            mCallback.onGetFailure(e.getMessage());
+            return null;
         }
         return result;
     }
@@ -68,6 +69,10 @@ public class LoadAsync extends AsyncTask<String, String, String> {
 
     @Override
     protected void onPostExecute(String result) {
+        if (result == null) {
+            mCallback.onGetFailure(Constant.ERROR_NULL);
+            return;
+        }
         mCallback.onGetSuccess(result);
         mCallback.onComplete();
     }

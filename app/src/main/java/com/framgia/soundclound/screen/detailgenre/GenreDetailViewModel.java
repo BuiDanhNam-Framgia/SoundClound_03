@@ -10,6 +10,7 @@ import com.framgia.soundclound.BR;
 import com.framgia.soundclound.data.model.Track;
 import com.framgia.soundclound.data.source.TrackDataSource;
 import com.framgia.soundclound.data.source.TrackRepository;
+import com.framgia.soundclound.data.source.local.sqlite.TrackLocalDataSource;
 import com.framgia.soundclound.data.source.remote.TrackRemoteDataSource;
 import com.framgia.soundclound.screen.moretrack.MoreTrackFragment;
 import com.framgia.soundclound.util.Constant;
@@ -31,15 +32,27 @@ public class GenreDetailViewModel extends BaseObservable implements TrackClickLi
     public GenreDetailViewModel(Context context, String genre) {
         mContext = context;
         mGenre = genre;
-        mTrackRepository = new TrackRepository(TrackRemoteDataSource.getInstance());
+        initView();
+        getDataTrackRemote();
+    }
+
+
+    public GenreDetailViewModel(GenreDetailActivity context, int idAlbum) {
+        mContext = context;
+        initView();
+        getDataTrackLocal(idAlbum);
+    }
+
+    private void initView() {
         mGenreDetailAdapter = new GenreDetailAdapter();
         mGenreDetailAdapter.setTrackClickListener(this);
         mGenreDetailAdapter.setMoreInfoClickListener(this);
-        getData();
+        mTrackRepository = TrackRepository.getInstance(TrackRemoteDataSource.getInstance(),
+                TrackLocalDataSource.getInstance(mContext));
     }
 
-    private void getData() {
-        mTrackRepository.getListTrack(Constant.BASE_URL + Constant.PARA,
+    private void getDataTrackRemote() {
+        mTrackRepository.getRemoteDataSource().getListTrack(Constant.BASE_URL + Constant.PARA,
                 mGenre, Constant.LIMIT_DEFAULT, Constant.OFF_SET_DEFAULT,
                 new TrackDataSource.Callback<List<Track>>() {
                     @Override
@@ -54,8 +67,7 @@ public class GenreDetailViewModel extends BaseObservable implements TrackClickLi
 
                     @Override
                     public void onGetFailure(String message) {
-                        Toast.makeText(mContext , Constant.ERROR_TEXT, Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -71,7 +83,7 @@ public class GenreDetailViewModel extends BaseObservable implements TrackClickLi
         return mGenreDetailAdapter;
     }
 
-    public void setmGenreDetailAdapter(GenreDetailAdapter genreDetailAdapter) {
+    public void setGenreDetailAdapter(GenreDetailAdapter genreDetailAdapter) {
         this.mGenreDetailAdapter = genreDetailAdapter;
         notifyPropertyChanged(BR.genreDetailAdapter);
     }
@@ -86,5 +98,29 @@ public class GenreDetailViewModel extends BaseObservable implements TrackClickLi
     public void onClickMore(Track track) {
         MoreTrackFragment.newInstance(track)
                 .show(((AppCompatActivity) mContext).getSupportFragmentManager(), null);
+    }
+
+    public void getDataTrackLocal(int idAlbum) {
+        mTrackRepository.getLocalDataSource().getListTrack(idAlbum, 0, new TrackDataSource.Callback<List<Track>>() {
+            @Override
+            public void onStartLoading() {
+
+            }
+
+            @Override
+            public void onGetSuccess(List<Track> data) {
+                mGenreDetailAdapter.addData(data);
+            }
+
+            @Override
+            public void onGetFailure(String message) {
+                Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
     }
 }

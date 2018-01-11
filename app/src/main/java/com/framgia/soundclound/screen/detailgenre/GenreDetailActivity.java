@@ -22,15 +22,31 @@ public class GenreDetailActivity extends AppCompatActivity {
         return intent;
     }
 
+    public static Intent getInstance(Context context, int idAlbum) {
+        Intent intent = new Intent(context, GenreDetailActivity.class);
+        intent.putExtra(Constant.EXTRA_ID_ALBUM, idAlbum);
+        return intent;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         ActivityGenreDetailBinding activityGenreDetailBinding = DataBindingUtil
                 .setContentView(this, R.layout.activity_genre_detail);
-        GenreDetailViewModel mViewModel = new GenreDetailViewModel(this, getIntent().getExtras()
-                .getString(Constant.EXTRA_GENRE));
-        activityGenreDetailBinding.setViewModel(mViewModel);
+        GenreDetailViewModel genreDetailViewModel = null;
+        Intent intent = getIntent();
+        if (intent != null) {
+            String keyGenre = intent.getExtras().getString(Constant.EXTRA_GENRE, null);
+            int idAlbum = intent.getExtras().getInt(
+                    Constant.EXTRA_ID_ALBUM,
+                    Constant.VALUE_ID_ALBUM_NULL);
+            if (keyGenre != null) {
+                genreDetailViewModel = new GenreDetailViewModel(this, keyGenre);
+            }
+            if (idAlbum != Constant.VALUE_ID_ALBUM_NULL) {
+                genreDetailViewModel = new GenreDetailViewModel(this, idAlbum);
+            }
+        }
+        activityGenreDetailBinding.setViewModel(genreDetailViewModel);
     }
-
 }
