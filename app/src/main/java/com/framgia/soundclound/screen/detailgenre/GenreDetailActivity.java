@@ -16,9 +16,16 @@ import com.framgia.soundclound.util.Constant;
 
 public class GenreDetailActivity extends AppCompatActivity {
 
+
     public static Intent getInstance(Context context, String genre) {
         Intent intent = new Intent(context, GenreDetailActivity.class);
         intent.putExtra(Constant.EXTRA_GENRE, genre);
+        return intent;
+    }
+
+    public static Intent getInstance(Context context, int idAlbum) {
+        Intent intent = new Intent(context, GenreDetailActivity.class);
+        intent.putExtra(Constant.EXTRA_ID_ALBUM, idAlbum);
         return intent;
     }
 
@@ -28,9 +35,21 @@ public class GenreDetailActivity extends AppCompatActivity {
 
         ActivityGenreDetailBinding activityGenreDetailBinding = DataBindingUtil
                 .setContentView(this, R.layout.activity_genre_detail);
-        GenreDetailViewModel mViewModel = new GenreDetailViewModel(this, getIntent().getExtras()
-                .getString(Constant.EXTRA_GENRE));
-        activityGenreDetailBinding.setViewModel(mViewModel);
+        GenreDetailViewModel genreDetailViewModel = null;
+        Intent intent = getIntent();
+        if (intent != null) {
+            String keyGenre = intent.getExtras().getString(Constant.EXTRA_GENRE, null);
+            int idAlbum = intent.getExtras().getInt(
+                    Constant.EXTRA_ID_ALBUM,
+                    Constant.VALUE_ID_ALBUM_NULL);
+            if (keyGenre != null) {
+                genreDetailViewModel = new GenreDetailViewModel(this, keyGenre);
+            }
+            if (idAlbum != Constant.VALUE_ID_ALBUM_NULL) {
+                genreDetailViewModel = new GenreDetailViewModel(this, idAlbum);
+            }
+        }
+        activityGenreDetailBinding.setViewModel(genreDetailViewModel);
     }
 
 }

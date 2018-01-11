@@ -15,6 +15,7 @@ import com.framgia.soundclound.BR;
 import com.framgia.soundclound.R;
 import com.framgia.soundclound.data.model.Album;
 import com.framgia.soundclound.data.source.repository.AlbumRepository;
+import com.framgia.soundclound.screen.detailgenre.GenreDetailActivity;
 
 /**
  * Created by Bui Danh Nam on 8/1/2018.
@@ -89,7 +90,11 @@ public class PlaylistModelView extends BaseObservable implements OnItemAlbumClic
 
     @Override
     public void onItemClick(Album album) {
-        //// TODO: 10/1/2018  click item
+        if (album == null) {
+            return;
+        }
+        int idAlbum = album.getId();
+        mContext.startActivity(GenreDetailActivity.getInstance(mContext, idAlbum));
     }
 
     @Override
@@ -142,6 +147,10 @@ public class PlaylistModelView extends BaseObservable implements OnItemAlbumClic
                             if (resultRename) {
                                 updateUI();
                             }
+                        } else {
+                            Toast.makeText(mContext,
+                                    R.string.msg_err_name_null,
+                                    Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

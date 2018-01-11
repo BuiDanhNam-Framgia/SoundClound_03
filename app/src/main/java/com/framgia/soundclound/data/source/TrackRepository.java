@@ -1,26 +1,36 @@
 package com.framgia.soundclound.data.source;
 
-import android.support.annotation.NonNull;
-
-import com.framgia.soundclound.data.model.Track;
-
-import java.util.List;
-
 /**
  * Created by Sony on 1/5/2018.
  */
 
-public class TrackRepository implements TrackDataSource {
+public class TrackRepository {
 
-    private TrackDataSource mRemoteDataSource;
+    private static TrackRepository INSTANCE = null;
 
-    public TrackRepository(TrackDataSource trackDataSource) {
-        mRemoteDataSource = trackDataSource;
+    private final TrackDataSource.LocalDataSource mLocalDataSource;
+    private final TrackDataSource.RemoveDataSource mRemoteDataSource;
+
+    private TrackRepository(TrackDataSource.RemoveDataSource remoteDataSource,
+                            TrackDataSource.LocalDataSource localDataSource) {
+        mRemoteDataSource = remoteDataSource;
+        mLocalDataSource = localDataSource;
     }
 
-    @Override
-    public void getListTrack(String url, String genre, int limit, @NonNull int offSet,
-                             Callback<List<Track>> callback) {
-        mRemoteDataSource.getListTrack(url, genre, limit, offSet, callback);
+    public static TrackRepository getInstance(TrackDataSource.RemoveDataSource remoteDataSource,
+                                              TrackDataSource.LocalDataSource localDataSource) {
+        if (INSTANCE == null) {
+            INSTANCE = new TrackRepository(remoteDataSource, localDataSource);
+        }
+        return INSTANCE;
     }
+
+    public TrackDataSource.LocalDataSource getLocalDataSource() {
+        return mLocalDataSource;
+    }
+
+    public TrackDataSource.RemoveDataSource getRemoteDataSource() {
+        return mRemoteDataSource;
+    }
+
 }
