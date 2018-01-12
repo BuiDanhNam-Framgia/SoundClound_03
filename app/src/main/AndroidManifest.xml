@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:name=".MainApllication"
@@ -22,7 +23,8 @@
         </activity>
         <activity android:name=".screen.detailgenre.GenreDetailActivity" />
         <activity android:name=".screen.playtrack.PlayTrackActivity"/>
-        <activity android:name=".screen.detailalbum.DetailAlbumActivity"/>
+        <activity android:name=".screen.detailalbum.DetailAlbumActivity" />
+        <service android:name=".Service.MusicServiceTest" />
     </application>
 
 </manifest>

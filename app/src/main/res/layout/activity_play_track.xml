@@ -111,6 +111,7 @@
             android:layout_width="@dimen/dp_56"
             android:layout_height="@dimen/dp_56" />
         <ImageView
+            android:src="@android:drawable/ic_btn_speak_now"
             android:contentDescription="@string/title_pause"
             app:layout_constraintRight_toLeftOf="@id/image_next"
             android:id="@+id/image_pause"
@@ -120,6 +121,7 @@
             android:layout_width="@dimen/dp_56"
             android:layout_height="@dimen/dp_56" />
         <ImageView
+            android:src="@android:drawable/ic_btn_speak_now"
             android:contentDescription="@string/title_next"
             app:layout_constraintRight_toLeftOf="@id/image_shuffle"
             app:layout_constraintLeft_toRightOf="@id/image_pause"

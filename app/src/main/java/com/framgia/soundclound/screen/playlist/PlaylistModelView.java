@@ -3,6 +3,7 @@ package com.framgia.soundclound.screen.playlist;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.view.MenuItem;
@@ -15,7 +16,7 @@ import com.framgia.soundclound.BR;
 import com.framgia.soundclound.R;
 import com.framgia.soundclound.data.model.Album;
 import com.framgia.soundclound.data.source.repository.AlbumRepository;
-import com.framgia.soundclound.screen.detailalbum.DetailAlbumActivity;
+import com.framgia.soundclound.screen.playtrack.PlayTrackActivity;
 
 /**
  * Created by Bui Danh Nam on 8/1/2018.
@@ -86,7 +87,9 @@ public class PlaylistModelView extends BaseObservable implements OnItemAlbumClic
         if (album == null) {
             return;
         }
-        mContext.startActivity(DetailAlbumActivity.getInstance(mContext, album.getId()));
+//        mContext.startActivity(DetailAlbumActivity.getInstance(mContext, album.getId()));
+        Intent intent = new Intent(mContext, PlayTrackActivity.class);
+        mContext.startActivity(intent);
     }
 
     @Override
