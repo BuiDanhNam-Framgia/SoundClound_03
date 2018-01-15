@@ -17,6 +17,8 @@ import com.bumptech.glide.Glide;
 import com.framgia.soundclound.R;
 import com.framgia.soundclound.screen.main.TabType;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 /**
  * Created by Sony on 1/4/2018.
@@ -99,6 +101,16 @@ public class BindingUtil {
     public static void setImage(ImageView imageView, String urlImage) {
         if (urlImage == null) {
             imageView.setImageResource(R.mipmap.ic_launcher);
+        } else {
+            Glide.with(imageView.getContext()).load(urlImage)
+                    .into(imageView);
+        }
+    }
+
+    @BindingAdapter("imgResource")
+    public static void setImage(CircleImageView imageView, String urlImage) {
+        if (urlImage == null) {
+            imageView.setImageResource(R.drawable.img_background_genres);
         } else {
             Glide.with(imageView.getContext()).load(urlImage)
                     .into(imageView);
