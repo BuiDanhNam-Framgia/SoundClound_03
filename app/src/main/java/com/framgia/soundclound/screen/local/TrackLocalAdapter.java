@@ -73,7 +73,7 @@ public class TrackLocalAdapter extends
         public void bindData(Track track) {
             mBinding.executePendingBindings();
             mBinding.setViewModel(
-                    new ItemTrackLocalViewModel(track, mTrackClickListener));
+                    new ItemTrackLocalViewModel(track, getAdapterPosition(), mTrackClickListener));
         }
     }
 }
