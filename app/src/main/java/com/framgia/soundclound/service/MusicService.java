@@ -258,7 +258,7 @@ public class MusicService extends Service implements BaseMediaPlayer {
     }
 
     public int getDuration() {
-        return mDuration;
+        return mPlayer.getDuration();
     }
 
     public void setShuffle() {

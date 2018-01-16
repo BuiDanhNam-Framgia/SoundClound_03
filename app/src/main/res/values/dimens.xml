@@ -39,5 +39,6 @@
     <dimen name="icon_dot_h">40dp</dimen>
     <dimen name="dp_66">66dp</dimen>
     <dimen name="dp_6">6dp</dimen>
+    <dimen name="dp_64">64dp</dimen>
 </resources>
 
