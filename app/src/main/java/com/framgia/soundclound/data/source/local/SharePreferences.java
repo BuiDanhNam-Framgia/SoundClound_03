@@ -48,7 +48,8 @@ public class SharePreferences {
 
     public List<Track> getListTrack() {
         String tracks = mSharedPreferences.getString(LIST_TRACK, null);
-        Type listType = new TypeToken<ArrayList<Track>>(){}.getType();
+        Type listType = new TypeToken<ArrayList<Track>>() {
+        }.getType();
         return new Gson().fromJson(tracks, listType);
     }
 
