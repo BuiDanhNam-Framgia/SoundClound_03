@@ -8,6 +8,7 @@ import android.databinding.Bindable;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import com.framgia.soundclound.R;
 import com.framgia.soundclound.data.model.Track;
@@ -16,7 +17,7 @@ import com.framgia.soundclound.data.source.repository.AlbumRepository;
 import com.framgia.soundclound.screen.BaseOnItemClick;
 import com.framgia.soundclound.screen.addtracktoalbum.AddTrackActivity;
 import com.framgia.soundclound.screen.playtrack.PlayTrackActivity;
-
+import com.framgia.soundclound.util.Constant;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -72,19 +73,25 @@ public class DetailAlbumModelView extends BaseObservable implements BaseOnItemCl
                 switch (item.getItemId()) {
                     case R.id.remove_track:
                         handleRemoveTrack(mIdAlbum, track, builder);
+                        builder.show();
                         break;
                     case R.id.add_favorite:
-                        handleAddFavorite(track, builder);
+                        handleAddFavorite(track);
                         break;
                 }
-                builder.show();
                 return true;
             }
         });
         popupMenu.show();
     }
 
-    private void handleAddFavorite(Track track, AlertDialog.Builder builder) {
+    private void handleAddFavorite(Track track) {
+        if (AlbumRepository.getInstance(mContext).addTrack(Constant.TRACKS_FAVORITE, track)) {
+            Toast.makeText(mContext, R.string.msg_notifi_favorite_track_suggest, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(mContext, R.string.msg_notifi_favorite_track_fail, Toast.LENGTH_SHORT).show();
+
+        }
     }
 
     private void handleRemoveTrack(final int idAlbum, final Track track,

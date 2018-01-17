@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Created by Sony on 1/5/2018.
  */
@@ -98,6 +99,10 @@ public class TrackRemoteDataSource implements TrackDataSource {
                     cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION)));
             track.setPublisherMetadata(new PublisherMetadata(cursor.getString(
                     cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST))));
+            if (cursor.getColumnIndex(MediaStore.Audio.AlbumColumns.ALBUM_ART) > 0) {
+                track.setArtworkUrl
+                        (cursor.getString(cursor.getColumnIndex(MediaStore.Audio.AlbumColumns.ALBUM_ART)));
+            }
             listLocal.add(track);
         }
         cursor.close();

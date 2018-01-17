@@ -73,8 +73,10 @@ public class DetailAlbumAdapter extends
             if (track == null) {
                 return;
             }
-            mBinding.setTrack(track);
             mBinding.setListener(mOnItemClick);
+            mBinding.setTrack(track);
+            mBinding.setViewModel(new ItemDetailAlbumViewModel(track,
+                    mOnItemClick, getAdapterPosition()));
             mBinding.executePendingBindings();
         }
     }

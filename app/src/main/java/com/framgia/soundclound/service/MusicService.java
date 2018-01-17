@@ -225,7 +225,7 @@ public class MusicService extends Service implements BaseMediaPlayer {
     public void next() {
         mCurentTrack = SharePreferences.getInstance().getIndex();
         mCurentTrack++;
-        if (mCurentTrack > (mTracks.size() - 1)) {
+        if (mCurentTrack >= (mTracks.size() - 1)) {
             mCurentTrack = 0;
             SharePreferences.getInstance().putIndex(mCurentTrack);
             play();

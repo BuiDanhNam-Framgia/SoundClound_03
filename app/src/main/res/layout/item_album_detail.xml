@@ -4,9 +4,11 @@
     <data>
 
         <variable
+            name="viewModel"
+            type="com.framgia.soundclound.screen.detailalbum.ItemDetailAlbumViewModel" />
+        <variable
             name="track"
-            type="com.framgia.soundclound.data.model.Track" />
-
+            type="com.framgia.soundclound.data.model.Track"/>
         <variable
             name="listener"
             type="com.framgia.soundclound.screen.BaseOnItemClick" />
@@ -16,7 +18,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_72"
-        android:background="@drawable/background_item_recycleview">
+        android:background="@drawable/background_item_recycleview"
+        android:onClick="@{viewModel::onClickTrack}">
 
         <ImageView
             android:id="@+id/imv_track"
@@ -24,7 +27,7 @@
             android:layout_height="@dimen/dp_60"
             android:layout_marginStart="@dimen/dp_8"
             android:contentDescription="@string/image_track"
-            app:imgResource="@{track.artworkUrl}"
+            app:imgResource="@{viewModel.url}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/tv_title_track"
@@ -36,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_16"
             android:layout_marginTop="@dimen/dp_12"
-            android:text="@{track.title}"
+            android:text="@{viewModel.title}"
             android:textColor="@color/color_white"
             android:textSize="@dimen/sp_14"
             app:layout_constraintLeft_toRightOf="@id/imv_track"
@@ -48,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_16"
             android:layout_marginTop="4dp"
-            android:text="@{track.publisherMetadata.artist}"
+            android:text="@{viewModel.artist}"
             android:textColor="@color/textFade"
             android:textSize="@dimen/sp_12"
             app:layout_constraintLeft_toRightOf="@id/imv_track"
