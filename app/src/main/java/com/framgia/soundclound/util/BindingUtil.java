@@ -112,7 +112,7 @@ public class BindingUtil {
 //        if (urlImage == null) {
             imageView.setImageResource(R.drawable.img_background_genres);
 //        } else {
-//            Glide.with().load(urlImage)
+//            Glide.with(imageView.getContext()).load(urlImage)
 //                    .into(imageView);
 //        }
     }
