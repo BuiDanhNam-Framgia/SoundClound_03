@@ -6,13 +6,12 @@
 
         <variable
             name="viewModel"
-            type="com.framgia.soundclound.screen.addtracktoalbum.ItemAddTrackViewModel" />
+            type="com.framgia.soundclound.screen.favourite.ItemFavoriteViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_72"
-        android:onClick="@{viewModel::onClickTrack}">
+        android:layout_height="@dimen/dp_72">
 
         <ImageView
             android:id="@+id/imv_track"
@@ -51,14 +50,14 @@
             app:layout_constraintLeft_toRightOf="@id/imv_track"
             app:layout_constraintTop_toBottomOf="@id/tv_title_track" />
 
-        <CheckBox
-            android:id="@+id/image_view_more"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/image_view_favorite"
+            android:layout_width="@dimen/dp_24"
             android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/dp_6"
-            android:checked="@{viewModel.checked}"
-            android:contentDescription="@string/image_more_info"
-            android:theme="@style/BorderWhite"
+            android:layout_marginEnd="@dimen/dp_12"
+            android:contentDescription="@string/title_like"
+            android:onClick="@{viewModel::onClickFavorite}"
+            android:src="@drawable/ic_favorite_white_24dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

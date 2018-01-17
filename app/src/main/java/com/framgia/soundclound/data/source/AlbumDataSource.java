@@ -24,9 +24,15 @@ public interface AlbumDataSource {
 
     boolean addTrack(int idAlbum, Track track);
 
+    boolean addTrack(String nameAlbum, Track track);
+
     List<Track> getAllTrack(int idAlbum);
 
-    boolean removeTrack(int idAlbum, int idTrack);
+    List<Track> getAllTrack(String nameAlbum);
+
+    boolean removeTrack(int idAlbum, Track track);
 
     boolean renameAlbum(Album album);
+
+    boolean checkTrackExistAlbum(String nameAlbum, Track track);
 }
