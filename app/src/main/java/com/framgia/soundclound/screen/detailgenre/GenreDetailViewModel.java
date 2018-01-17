@@ -79,7 +79,6 @@ public class GenreDetailViewModel extends BaseObservable implements TrackClickLi
 
     @Override
     public void onItemTrackClick(Track track, int position) {
-        // TODO: 1/10/2018 open playtrackactivity
         SharePreferences.getInstance().putListTrack(new Gson().toJson(
                 mGenreDetailAdapter.getData()));
         SharePreferences.getInstance().putTrack(new Gson().toJson(track));

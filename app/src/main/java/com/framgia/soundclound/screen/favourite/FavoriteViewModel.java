@@ -49,6 +49,7 @@ public class FavoriteViewModel extends BaseObservable implements ItemClickListen
         SharePreferences.getInstance().putTrack(new Gson().toJson(track));
         SharePreferences.getInstance().putIndex(pos);
         mContext.startActivity(PlayTrackActivity.getInstance(mContext));
+
     }
 
     @Override

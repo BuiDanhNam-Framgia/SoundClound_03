@@ -68,7 +68,7 @@ public class FavoriteTrackAdapter extends
 
     public void updateData(int posChange) {
         mTracks.remove(posChange);
-        notifyItemChanged(posChange);
+        notifyDataSetChanged();
     }
 
     /**

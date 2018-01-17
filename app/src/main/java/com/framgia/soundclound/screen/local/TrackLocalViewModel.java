@@ -12,8 +12,11 @@ import android.support.v4.content.ContextCompat;
 import com.framgia.soundclound.BR;
 import com.framgia.soundclound.data.model.Track;
 import com.framgia.soundclound.data.source.TrackRepository;
+import com.framgia.soundclound.data.source.local.SharePreferences;
 import com.framgia.soundclound.data.source.remote.TrackRemoteDataSource;
+import com.framgia.soundclound.screen.playtrack.PlayTrackActivity;
 import com.framgia.soundclound.util.Constant;
+import com.google.gson.Gson;
 
 /**
  * Created by ADMIN on 1/7/2018.
@@ -24,7 +27,7 @@ public class TrackLocalViewModel extends BaseObservable implements TrackClickLis
     private TrackLocalAdapter mTrackLocalAdapter;
     private Context mContext;
     private TrackRepository mTrackRepository;
-    
+
     public TrackLocalViewModel(Context context) {
         mContext = context;
         mTrackRepository = new TrackRepository(TrackRemoteDataSource.getInstance());
@@ -51,8 +54,12 @@ public class TrackLocalViewModel extends BaseObservable implements TrackClickLis
     }
 
     @Override
-    public void onItemTrackClick(Track track) {
-        // TODO: 1/10/2018 open playtrack
+    public void onItemTrackClick(Track track, int pos) {
+        SharePreferences.getInstance().putListTrack(new Gson().toJson(
+                mTrackLocalAdapter.getTracks()));
+        SharePreferences.getInstance().putTrack(new Gson().toJson(track));
+        SharePreferences.getInstance().putIndex(pos);
+        mContext.startActivity(PlayTrackActivity.getInstance(mContext));
     }
 
     public boolean checkPermisson() {

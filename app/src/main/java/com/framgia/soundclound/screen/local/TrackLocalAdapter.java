@@ -34,6 +34,14 @@ public class TrackLocalAdapter extends
         return new ItemTrackLocalViewHolder(itemTrackLocalBinding, mTrackClickLisener);
     }
 
+    public List<Track> getTracks() {
+        return mTracks;
+    }
+
+    public void setTracks(List<Track> tracks) {
+        mTracks = tracks;
+    }
+
     public void getData(List<Track> tracks) {
         if (tracks == null) {
             return;
@@ -73,7 +81,7 @@ public class TrackLocalAdapter extends
         public void bindData(Track track) {
             mBinding.executePendingBindings();
             mBinding.setViewModel(
-                    new ItemTrackLocalViewModel(track, mTrackClickListener));
+                    new ItemTrackLocalViewModel(track, mTrackClickListener, getAdapterPosition()));
         }
     }
 }
