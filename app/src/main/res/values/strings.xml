@@ -23,6 +23,9 @@
     <string name="action_delete">Delete</string>
     <string name="action_rename">Rename</string>
     <string name="msg_rename_album">Rename Album</string>
+    <string name="msg_notifi_favorite_track">Favorite Track</string>
+    <string name="msg_notifi_favorite_track_suggest">Add favorite suggest !</string>
+    <string name="msg_notifi_favorite_track_fail">Add favorite fail !</string>
     <string name="action_ok">OK</string>
     <string name="action_cancel">Cancel</string>
     <string name="msg_delele_album">Do you want delete album ? </string>
@@ -32,6 +35,7 @@
     <string name="action_add_favorite">Add Favorite</string>
 
     <string name="title_add_favorite">Thêm vào danh sách bài hát yêu thích</string>
+    <string name="title_exist_favorite">Bài hát đã có trong danh sách yêu thích ! </string>
     <string name="title_download">Tải bài hát về máy</string>
     <string name="title_like">like track</string>
     <string name="title_track">imagetrack</string>

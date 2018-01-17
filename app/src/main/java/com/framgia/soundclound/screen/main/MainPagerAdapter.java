@@ -4,10 +4,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.framgia.soundclound.screen.favourite.FavoriteTrackFragment;
 import com.framgia.soundclound.screen.home.HomeFragment;
-import com.framgia.soundclound.screen.playlist.PlaylistFragment;
-
 import com.framgia.soundclound.screen.local.LocalFragment;
+import com.framgia.soundclound.screen.playlist.PlaylistFragment;
 
 /**
  * Created by Sony on 1/4/2018.
@@ -31,7 +31,7 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
             case TabType.LOCAL:
                 return LocalFragment.newInstance();
             case TabType.FAVORITE:
-                return new Fragment();
+                return FavoriteTrackFragment.newInstance();
             default:
                 return null;
         }

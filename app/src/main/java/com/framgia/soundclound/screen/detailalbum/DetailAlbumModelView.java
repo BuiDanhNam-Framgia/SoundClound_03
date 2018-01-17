@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 
 import com.framgia.soundclound.R;
 import com.framgia.soundclound.data.model.Track;
@@ -56,6 +58,25 @@ public class DetailAlbumModelView extends BaseObservable implements BaseOnItemCl
 
     @Override
     public void onIconMoreClick(ImageView imageView, final Track track) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        PopupMenu popupMenu = new PopupMenu(mContext, imageView);
+        popupMenu.getMenuInflater().inflate(R.menu.popup_menu_track_local, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.remove_track:
+                        handleRemoveTrack(mIdAlbum, track, builder);
+                        break;
+                    case R.id.add_favorite:
+                        handleAddFavorite(track, builder);
+                        break;
+                }
+                builder.show();
+                return true;
+            }
+        });
+        popupMenu.show();
     }
 
     private void handleAddFavorite(Track track, AlertDialog.Builder builder) {

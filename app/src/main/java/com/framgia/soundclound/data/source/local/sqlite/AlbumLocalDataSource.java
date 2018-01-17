@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.framgia.soundclound.data.model.Album;
 import com.framgia.soundclound.data.model.Track;
 import com.framgia.soundclound.data.source.AlbumDataSource;
+import com.framgia.soundclound.util.Constant;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -55,6 +56,15 @@ public class AlbumLocalDataSource extends SQLiteOpenHelper implements AlbumDataS
                 + NUMBER_SONG + " INTEGER,"
                 + LIST_TRACK + " TEXT)";
         db.execSQL(sqlQuery);
+        insertTableFavorite(db);
+    }
+
+    private void insertTableFavorite(SQLiteDatabase db) {
+        Album album = new Album();
+        album.setName(Constant.TRACKS_FAVORITE);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(NAME_ALBUM, album.getName());
+        long result = db.insert(TABLE_ALBUM, null, contentValues);
     }
 
     @Override
@@ -73,7 +83,10 @@ public class AlbumLocalDataSource extends SQLiteOpenHelper implements AlbumDataS
         try {
             if (cursor != null && cursor.moveToFirst()) {
                 do {
-                    albums.add(parseCursorToAlbum(cursor));
+                    if (!cursor.getString(cursor.getColumnIndex(NAME_ALBUM))
+                            .equals(Constant.TRACKS_FAVORITE)) {
+                        albums.add(parseCursorToAlbum(cursor));
+                    }
                 } while (cursor.moveToNext());
             }
         } finally {
@@ -153,6 +166,30 @@ public class AlbumLocalDataSource extends SQLiteOpenHelper implements AlbumDataS
         return updateAlbum(album);
     }
 
+
+
+    @Override
+    public boolean addTrack(String nameAlbum, Track track) {
+        Album album = getAlbumByName(nameAlbum);
+        if (album == null) {
+            return false;
+        }
+        return addTrack(album.getId(), track);
+    }
+
+    @Override
+    public boolean checkTrackExistAlbum(String nameAlbum, Track track) {
+        Album album = getAlbumByName(nameAlbum);
+        if (album == null) {
+            return false;
+        }
+        List<Track> tracks = album.getTracks();
+        if (tracks == null) {
+            return false;
+        }
+        return checkTrackExistAlbum(album.getTracks(), track);
+    }
+
     private boolean checkTrackExistAlbum(List<Track> tracks, Track track) {
         for (Track trackTemp : tracks) {
             if (track.getUri().equals(trackTemp.getUri())) {
@@ -165,6 +202,15 @@ public class AlbumLocalDataSource extends SQLiteOpenHelper implements AlbumDataS
     @Override
     public List<Track> getAllTrack(int idAlbum) {
         Album album = getAlbumById(idAlbum);
+        if (album == null) {
+            return null;
+        }
+        return album.getTracks();
+    }
+
+    @Override
+    public List<Track> getAllTrack(String nameAlbum) {
+        Album album = getAlbumByName(nameAlbum);
         if (album == null) {
             return null;
         }
@@ -189,6 +235,7 @@ public class AlbumLocalDataSource extends SQLiteOpenHelper implements AlbumDataS
                 tracksOld.remove(i);
             }
         }
+
         return updateAlbum(album);
     }
 

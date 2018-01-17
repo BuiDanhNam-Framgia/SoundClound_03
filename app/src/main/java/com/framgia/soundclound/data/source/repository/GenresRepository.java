@@ -30,16 +30,16 @@ public class GenresRepository {
             GENRES_POP_BLAS, GENRES_DEEP_HOUSE, GENRES_COUNTRY,
             GENRES_ROCK, GENRES_EDM, GENRES_ELECTRONIC
     })
-public @interface ServiceName {
-    String GENRES_ALL = "all-music";
-    String GENRES_POP = "pop";
-    String GENRES_COUNTRY = "country";
-    String GENRES_POP_BLAS = "jazzblues";
-    String GENRES_DEEP_HOUSE = "deephouse";
-    String GENRES_ROCK = "rock";
-    String GENRES_EDM = "danceedm";
-    String GENRES_CLASSIC = "classical";
-    String GENRES_ELECTRONIC = "electronic";
+    public @interface ServiceName {
+        String GENRES_ALL = "all-music";
+        String GENRES_POP = "pop";
+        String GENRES_COUNTRY = "country";
+        String GENRES_POP_BLAS = "jazzblues";
+        String GENRES_DEEP_HOUSE = "deephouse";
+        String GENRES_ROCK = "rock";
+        String GENRES_EDM = "danceedm";
+        String GENRES_CLASSIC = "classical";
+        String GENRES_ELECTRONIC = "electronic";
     }
 
     public GenresRepository() {
@@ -65,13 +65,13 @@ public @interface ServiceName {
         genres.add(new Genre(R.string.genres_popblas, R.drawable.img_background_genres,
                 GENRES_POP_BLAS,
                 R.drawable.icon_music_popblast));
-        genres.add(new Genre(R.string.genres_rock, R.drawable.ic_favorite_gray_24dp,
+        genres.add(new Genre(R.string.genres_rock, R.drawable.ic_favorite_white_24dp,
                 GENRES_ROCK,
                 R.drawable.icon_music_roock));
-        genres.add(new Genre(R.string.genres_edm, R.drawable.ic_favorite_gray_24dp,
+        genres.add(new Genre(R.string.genres_edm, R.drawable.ic_favorite_white_24dp,
                 GENRES_EDM,
                 R.drawable.icon_musicedm));
-        genres.add(new Genre(R.string.genres_electronic, R.drawable.ic_favorite_gray_24dp,
+        genres.add(new Genre(R.string.genres_electronic, R.drawable.ic_favorite_white_24dp,
                 GENRES_ELECTRONIC,
                 R.drawable.icon_musicedm));
         return genres;
