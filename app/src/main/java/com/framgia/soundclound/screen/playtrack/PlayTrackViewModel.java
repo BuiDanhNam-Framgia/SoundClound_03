@@ -16,7 +16,6 @@ import com.framgia.soundclound.service.MusicService;
 import com.framgia.soundclound.util.StringUtil;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * Created by Sony on 1/11/2018.
@@ -167,7 +166,9 @@ public class PlayTrackViewModel extends BaseObservable implements SeekBar.OnSeek
                                 totalDuration));
                         setProgressSeekBar(progress);
                     } catch (InterruptedException e) {
-                        Logger.getLogger(e.toString());
+                        e.printStackTrace();
+                    } catch (IllegalStateException e) {
+                        break;
                     }
                 }
             }

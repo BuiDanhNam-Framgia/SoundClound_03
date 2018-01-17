@@ -11,10 +11,13 @@ import android.widget.PopupMenu;
 
 import com.framgia.soundclound.R;
 import com.framgia.soundclound.data.model.Track;
+import com.framgia.soundclound.data.source.local.SharePreferences;
 import com.framgia.soundclound.data.source.repository.AlbumRepository;
 import com.framgia.soundclound.screen.BaseOnItemClick;
 import com.framgia.soundclound.screen.addtracktoalbum.AddTrackActivity;
 import com.framgia.soundclound.screen.playtrack.PlayTrackActivity;
+
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -48,7 +51,9 @@ public class DetailAlbumModelView extends BaseObservable implements BaseOnItemCl
 
     @Override
     public void onItemClick(Track track, int pos) {
-        // // TODO: 17/1/2018 save data SharePreferences
+        SharePreferences.getInstance().putListTrack(new Gson().toJson(mTracks));
+        SharePreferences.getInstance().putTrack(new Gson().toJson(track));
+        SharePreferences.getInstance().putIndex(pos);
         mContext.startActivity(PlayTrackActivity.getInstance(mContext));
     }
 

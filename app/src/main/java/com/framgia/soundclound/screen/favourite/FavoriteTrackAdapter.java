@@ -66,6 +66,11 @@ public class FavoriteTrackAdapter extends
         notifyDataSetChanged();
     }
 
+    public void updateData(int posChange) {
+        mTracks.remove(posChange);
+        notifyItemChanged(posChange);
+    }
+
     /**
      * Created by Sony on 1/5/2018.
      */
@@ -89,7 +94,7 @@ public class FavoriteTrackAdapter extends
             }
             mBinding.executePendingBindings();
             mBinding.setViewModel(new ItemFavoriteViewModel(track, mFavoriteClickListener,
-                    mItemClickListener));
+                    mItemClickListener, getAdapterPosition()));
         }
     }
 }

@@ -258,7 +258,7 @@ public class MusicService extends Service implements BaseMediaPlayer {
     }
 
     public int getDuration() {
-        return mPlayer.getDuration();
+        return mDuration;
     }
 
     public void setShuffle() {
@@ -324,7 +324,7 @@ public class MusicService extends Service implements BaseMediaPlayer {
         remoteViews.setOnClickPendingIntent(R.id.img_cancel, pdismisIntent);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(
-                getApplicationContext(), null);
+                getApplicationContext(), "abc");
         builder.setSmallIcon(R.drawable.icon_music_all)
                 .setContentTitle(mTitleTrack)
                 .setContentText(mArtist)
@@ -334,7 +334,6 @@ public class MusicService extends Service implements BaseMediaPlayer {
         Notification not = builder.build();
         startForeground(Constant.ID_FOREGROUND_SERVICE, not);
         sendNotifiChange();
-
     }
 
     /**

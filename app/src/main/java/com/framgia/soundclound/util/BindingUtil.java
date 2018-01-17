@@ -109,11 +109,11 @@ public class BindingUtil {
 
     @BindingAdapter("imgResource")
     public static void setImage(CircleImageView imageView, String urlImage) {
-        if (urlImage == null) {
+//        if (urlImage == null) {
             imageView.setImageResource(R.drawable.img_background_genres);
-        } else {
-            Glide.with(imageView.getContext()).load(urlImage)
-                    .into(imageView);
-        }
+//        } else {
+//            Glide.with().load(urlImage)
+//                    .into(imageView);
+//        }
     }
 }

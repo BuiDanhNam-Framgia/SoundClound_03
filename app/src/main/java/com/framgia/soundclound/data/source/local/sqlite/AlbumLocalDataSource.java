@@ -240,6 +240,15 @@ public class AlbumLocalDataSource extends SQLiteOpenHelper implements AlbumDataS
     }
 
     @Override
+    public boolean removeTrack(String nameAlbum, Track track) {
+        Album album = getAlbumByName(nameAlbum);
+        if (album == null) {
+            return false;
+        }
+        return removeTrack(album.getId(), track);
+    }
+
+    @Override
     public boolean renameAlbum(Album album) {
         if (album == null) {
             return false;

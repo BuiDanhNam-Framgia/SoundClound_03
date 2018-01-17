@@ -32,6 +32,8 @@ public interface AlbumDataSource {
 
     boolean removeTrack(int idAlbum, Track track);
 
+    boolean removeTrack(String nameAlbum, Track track);
+
     boolean renameAlbum(Album album);
 
     boolean checkTrackExistAlbum(String nameAlbum, Track track);

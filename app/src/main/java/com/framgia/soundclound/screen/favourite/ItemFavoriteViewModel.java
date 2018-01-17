@@ -14,26 +14,28 @@ public class ItemFavoriteViewModel extends BaseObservable {
     private Track mTrack;
     private FavoriteClickListener mFavoriteClickListener;
     private ItemClickListener mItemClickListener;
+    private int mPos;
 
     public ItemFavoriteViewModel(Track track, FavoriteClickListener favoriteClickListener,
-                                 ItemClickListener itemClickListener) {
+                                 ItemClickListener itemClickListener, int position) {
         mTrack = track;
         mFavoriteClickListener = favoriteClickListener;
         mItemClickListener = itemClickListener;
+        mPos = position;
     }
 
     public void onClickFavorite(View view) {
         if (mFavoriteClickListener == null) {
             return;
         }
-        mFavoriteClickListener.onTrackClick(mTrack);
+        mFavoriteClickListener.onTrackClick(mTrack, mPos);
     }
 
     public void onClickTrack(View view) {
         if (mItemClickListener == null) {
             return;
         }
-        mItemClickListener.onItemClick(mTrack);
+        mItemClickListener.onItemClick(mTrack, mPos);
     }
 
     public String getTitle() {

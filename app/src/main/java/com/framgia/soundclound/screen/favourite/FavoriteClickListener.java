@@ -7,5 +7,6 @@ import com.framgia.soundclound.data.model.Track;
  */
 
 public interface FavoriteClickListener {
-    void onTrackClick(Track track);
+
+    void onTrackClick(Track track , int posChange);
 }

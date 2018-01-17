@@ -5,8 +5,11 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
 import com.framgia.soundclound.data.model.Track;
+import com.framgia.soundclound.data.source.local.SharePreferences;
 import com.framgia.soundclound.data.source.repository.AlbumRepository;
+import com.framgia.soundclound.screen.playtrack.PlayTrackActivity;
 import com.framgia.soundclound.util.Constant;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -40,12 +43,20 @@ public class FavoriteViewModel extends BaseObservable implements ItemClickListen
     }
 
     @Override
-    public void onItemClick(Track track) {
-
+    public void onItemClick(Track track, int pos) {
+        SharePreferences.getInstance().putListTrack(new Gson().toJson(
+                mTracksFav));
+        SharePreferences.getInstance().putTrack(new Gson().toJson(track));
+        SharePreferences.getInstance().putIndex(pos);
+        mContext.startActivity(PlayTrackActivity.getInstance(mContext));
     }
 
     @Override
-    public void onTrackClick(Track track) {
-
+    public void onTrackClick(Track track, int posChange) {
+        boolean resultRemoveTrack = AlbumRepository.getInstance(mContext)
+                .removeTrack(Constant.TRACKS_FAVORITE, track);
+        if (resultRemoveTrack) {
+            mFavoriteTrackAdapter.updateData(posChange);
+        }
     }
 }
