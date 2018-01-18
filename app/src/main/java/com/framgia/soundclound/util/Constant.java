@@ -20,6 +20,7 @@ public class Constant {
     public static final String EXTRA_GENRE = "com.framgia.soundcloud.EXTRA_GENRE_NAME";
     public static final String ARGUMENT_TRACK = "com.framgia.soundcloud.ARGUMENT_TRACK";
     public static final String EXTRA_ID_ALBUM = "com.framgia.soundcloud.EXTRA_ID_ALBUM";
+    public static final String EXTRA_OPENT_ADDTRACT= "com.framgia.soundcloud.EXTRA_OPEN_ADD_TRACK";
     public static final int VALUE_ID_ALBUM_NULL = -1;
 
     public static final int LIMIT_DEFAULT = 20;
@@ -34,6 +35,7 @@ public class Constant {
 
     public static final String TABLE_ALBUM = "album";
     public static final String DATABASE_NAME = "DB_SOUNDCLOUND";
+    public static final String TRACKS_FAVORITE = "favorite_defaul";
     public static final int REQUEST_READ_STORAGE = 100;
 
     public static final String PARCE_LIST_TRACK = "com.framgia.soundcloud.PARCE_TRACK";
@@ -42,6 +44,7 @@ public class Constant {
     public static final String FILE_EXTENTION = ".mp3";
     public static final int ZERO = 0;
     public static final int LIMITT = 10;
+
     public static final int ID_FOREGROUND_SERVICE = 101;
     public static final String ACTION_MAIN = "com.framgia.soundclound.action.main";
     public static final String ACTION_PREV = "com.framgia.soundclound.action.action.prev";

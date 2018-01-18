@@ -107,14 +107,15 @@ public class BindingUtil {
         }
     }
 
+    @BindingAdapter("imgResource")
+    public static void setImage(CircleImageView imageView, String urlImage) {
+            imageView.setImageResource(R.drawable.ic_disk_play);
+    }
     @BindingAdapter({"scrollListener"})
     public static void setScrollListener(RecyclerView recyclerView,
                                          RecyclerView.OnScrollListener onScrollListener) {
         recyclerView.addOnScrollListener(onScrollListener);
     }
 
-    @BindingAdapter("imgResource")
-    public static void setImage(CircleImageView imageView, String urlImage) {
-        imageView.setImageResource(R.drawable.img_background_genres);
-    }
+
 }
